@@ -5,3 +5,7 @@ dist/
 *.egg-info/
 
 test_env/
+
+node_modules/
+.env
+.vscode

@@ -1,0 +1,8 @@
+name: lean_lsp_mcp
+services:
+    lean4:
+        stdin_open: true
+        tty: true
+        ports:
+            - "8000:8000"
+        image: lean4
