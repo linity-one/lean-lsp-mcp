@@ -30,7 +30,11 @@ RUN pip install --no-cache-dir uv
 
 COPY . .
 
+# Install dependencies using pyproject.toml
+RUN uv venv .venv && \
+    uv pip install .
+
 EXPOSE 8000
 
 # Available at http://127.0.0.1:8000/sse
-CMD ["uvx", "lean-lsp-mcp", "--transport" ,"sse"]
+CMD ["/lean-lsp-mcp/.venv/bin/python3", "-m", "lean_lsp_mcp", "--transport", "sse"]

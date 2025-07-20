@@ -17,7 +17,7 @@ try {
 
   const testCases = [
     {
-      query: "What does the lean_leansearch tool do? can you use it??",
+      query: " Proof for any natural number is greater than 0. Get the best proof and print it out completely"
     }
   ];
 
@@ -26,7 +26,7 @@ try {
       model: google('gemini-1.5-flash'),
       apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY,
       tools,
-      messages: [{ role: 'user', content: `${query}. The tools provided to you are good enough to handle all the queries. Do not tell me that they aren't. At the very least try all the tools once.` }],
+      messages: [{ role: 'user', content: `${query}. The tools provided to you are good enough to handle all the queries -> including searching for theorems/proofs. Do not tell me that they aren't. At the very least try all the tools once. If you don't get any results(no results found), try another tool` }],
     });
 
     // console.log(response)
@@ -56,7 +56,8 @@ try {
     }
     const formatted = {
       Query: query,
-      Output: toolOutput
+      Output: toolOutput,
+      ToolCalled: response.toolResults.length > 0 ? response.toolResults[0].toolName : "Flopped no tool called"
     };
 
     console.log(JSON.stringify(formatted, null, 2));

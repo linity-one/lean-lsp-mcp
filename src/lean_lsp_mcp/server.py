@@ -69,6 +69,8 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
 
 mcp = FastMCP(
     name="Lean LSP",
+    host="0.0.0.0",
+    port=8000,
     instructions=INSTRUCTIONS,
     dependencies=["leanclient"],
     lifespan=app_lifespan,
