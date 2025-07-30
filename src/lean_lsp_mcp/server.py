@@ -51,7 +51,7 @@ async def app_lifespan(server: FastMCP) -> AsyncIterator[AppContext]:
 
         context = AppContext(
             lean_project_path=lean_project_path,
-            client=None,
+            client=LeanLSPClient(lean_project_path),
             file_content_hashes={},
             rate_limit={
                 "leansearch": [],

@@ -22,6 +22,16 @@ ENV PATH=/root/.elan/bin:$PATH
 # Install lake to manage lean4 projects (elan is like `rustup`, lake is like `cargo`)
 RUN lake
 
+# Create a new lean project
+RUN lake +leanprover/lean4:nightly-2024-04-24 new lean_project math
+
+# Configure the project
+WORKDIR /lean_project
+
+RUN lake update
+
+ENV LEAN_PROJECT_PATH=/lean_project
+
 # Change to a different working directory
 WORKDIR /lean-lsp-mcp
 
